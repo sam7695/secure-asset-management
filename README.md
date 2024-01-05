@@ -35,26 +35,148 @@ Secure your financial data with confidence.
 
 ## API Documentation
 
-# User Registration
+## User Registration
+**Endpoint:** `POST /auth/register`
+
+Registers a new user.
+
+### Request:
+```json
+{
+  "username": "example_user",
+  "password": "secretpassword"
+}
+```
+### Response:
+```json
+{
+  "message": "User registered successfully"
+}
+```
+### CURL:
+
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{"username": "example_user", "password": "secretpassword"}' http://localhost:3000/auth/register
+```
+## User Login
+**Endpoint:** `POST /auth/login`
 
-# User Login
+Logs in with existing credentials.
+
+### Request:
+```json
+{
+  "username": "example_user",
+  "password": "secretpassword"
+}
+```
+
+### Response:
+```json
+{
+  "token": "your-access-token",
+  "userId": "user-id"
+}
+```
+### CURL:
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{"username": "example_user", "password": "secretpassword"}' http://localhost:3000/auth/login
+```
 
-# User Logout
+## User Logout
+**Endpoint:** `POST /auth/logout`
+
+Logs out the authenticated user.
+
+### Request:
+Include the Authorization header with the token.
+
+### Response:
+```json
+{
+  "message": "Logout successful"
+}
+```
+### CURL:
+```bash
 curl -X POST -H "Authorization: Bearer your-access-token" http://localhost:3000/auth/logout
+```
+### Create Financial Data
+**Endpoint:** `POST /financial/create-financial-data`
 
-# Create Financial Data
+Creates encrypted financial data for the authenticated user.
+
+### Request:
+```json
+{
+  "data": {
+    "account": "123456789",
+    "balance": 1000
+  }
+}
+```
+Include the Authorization header with the token.
+### Response:
+```json
+{
+  "message": "Financial data created successfully"
+}
+```
+### CURL:
+```bash
 curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer your-access-token" -d '{"data": {"account": "123456789", "balance": 1000}}' http://localhost:3000/financial/create-financial-data
+```
 
-# Update Financial Data
+## Update Financial Data
+**Endpoint:** `PUT /financial/update-financial-data`
+
+Updates encrypted financial data for the authenticated user.
+
+### Request:
+```json
+{
+  "data": {
+    "account": "123456789",
+    "balance": 1500
+  }
+}
+```
+Include the Authorization header with the token.
+
+### Response:
+```json
+{
+  "message": "Financial data updated successfully"
+}
+```
+
+#### CURL:
+```bash
 curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer your-access-token" -d '{"data": {"account": "123456789", "balance": 1500}}' http://localhost:3000/financial/update-financial-data
+```
 
-# Get Financial Data
+## Get Financial Data
+**Endpoint:** `GET /financial/financial-data`
+
+Retrieves decrypted financial data for the authenticated user.
+
+### Request:
+Include the Authorization header with the token.
+
+Response:
+```json
+{
+  "financialData": {
+    "account": "123456789",
+    "balance": 1500
+  }
+}
+```
+
+#### CURL:
+```bash
 curl -X GET -H "Authorization: Bearer your-access-token" http://localhost:3000/financial/financial-data
-
-## Contributing
-Contributions are welcome! Please follow the contribution guidelines.
+```
 
 ## Additional Considerations
 - **Authorization:**
@@ -80,6 +202,9 @@ Contributions are welcome! Please follow the contribution guidelines.
 
 ## License
 MIT License: [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+
+## Contributing
+Contributions are welcome! Please follow the contribution guidelines.
 
 ## Acknowledgements
 - Node.js
