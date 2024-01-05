@@ -35,6 +35,24 @@ Secure your financial data with confidence.
 
 ## API Documentation
 
+# User Registration
+curl -X POST -H "Content-Type: application/json" -d '{"username": "example_user", "password": "secretpassword"}' http://localhost:3000/auth/register
+
+# User Login
+curl -X POST -H "Content-Type: application/json" -d '{"username": "example_user", "password": "secretpassword"}' http://localhost:3000/auth/login
+
+# User Logout
+curl -X POST -H "Authorization: Bearer your-access-token" http://localhost:3000/auth/logout
+
+# Create Financial Data
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer your-access-token" -d '{"data": {"account": "123456789", "balance": 1000}}' http://localhost:3000/financial/create-financial-data
+
+# Update Financial Data
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer your-access-token" -d '{"data": {"account": "123456789", "balance": 1500}}' http://localhost:3000/financial/update-financial-data
+
+# Get Financial Data
+curl -X GET -H "Authorization: Bearer your-access-token" http://localhost:3000/financial/financial-data
+
 ## Contributing
 Contributions are welcome! Please follow the contribution guidelines.
 
